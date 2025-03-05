@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        input {
+            width: 50px;
+            padding: 5px;
+            font-size: 18px;
+            text-align: center;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jogo de Adivinhação 🎯</h1>
+        <p>Tente adivinhar um número entre 1 e 10.</p>
+        <input type="number" id="palpite" min="1" max="10">
+        <button onclick="verificarPalpite()">Enviar</button>
+        <p id="mensagem"></p>
+    </div>
+
+    <script>
+        // Gera um número aleatório entre 1 e 10
+        let numeroSecreto = Math.floor(Math.random() * 10) + 1;
+        let tentativas = 0;
+
+        function verificarPalpite() {
+            let palpite = parseInt(document.getElementById("palpite").value);
+            let mensagem = document.getElementById("mensagem");
+            tentativas++;
+
+            if (palpite === numeroSecreto) {
+                mensagem.innerHTML = `🎉 Parabéns! Você acertou o número ${numeroSecreto} em ${tentativas} tentativas!`;
+                mensagem.style.color = "green";
+            } else if (palpite < numeroSecreto) {
+                mensagem.innerHTML = "❌ O número é maior. Tente novamente!";
+                mensagem.style.color = "red";
+            } else {
+                mensagem.innerHTML = "❌ O número é menor. Tente novamente!";
+                mensagem.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
